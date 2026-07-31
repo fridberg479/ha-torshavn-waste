@@ -15,6 +15,7 @@ from .coordinator import TorshavnWasteCoordinator
 
 PLATFORMS: tuple[Platform, ...] = (
     Platform.BINARY_SENSOR,
+    Platform.CALENDAR,
     Platform.SENSOR,
 )
 

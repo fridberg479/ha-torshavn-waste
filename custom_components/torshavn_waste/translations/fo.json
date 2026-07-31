@@ -66,6 +66,11 @@
       "general_waste_collection_tomorrow": {
         "name": "Vanlig ruskinnsavning er í morgin"
       }
+    },
+    "calendar": {
+      "waste_collection": {
+        "name": "Ruskinnsavning"
+      }
     }
   }
 }

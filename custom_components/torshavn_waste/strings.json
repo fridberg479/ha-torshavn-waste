@@ -66,6 +66,11 @@
       "general_waste_collection_tomorrow": {
         "name": "General waste collection tomorrow"
       }
+    },
+    "calendar": {
+      "waste_collection": {
+        "name": "Waste collection"
+      }
     }
   }
 }
