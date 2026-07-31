@@ -54,6 +54,9 @@
     "sensor": {
       "next_green_collection": {
         "name": "Next green-bin collection"
+      },
+      "next_general_waste_collection": {
+        "name": "Next general waste collection"
       }
     }
   }

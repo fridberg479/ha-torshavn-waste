@@ -34,6 +34,15 @@ NEXT_GREEN_COLLECTION_DESCRIPTION = SensorEntityDescription(
     icon="mdi:recycle",
 )
 
+NEXT_GENERAL_WASTE_COLLECTION_DESCRIPTION = (
+    SensorEntityDescription(
+        key="next_general_waste_collection",
+        translation_key="next_general_waste_collection",
+        device_class=SensorDeviceClass.DATE,
+        icon="mdi:trash-can",
+    )
+)
+
 
 async def async_setup_entry(
     hass: HomeAssistant,
@@ -49,17 +58,26 @@ async def async_setup_entry(
             TorshavnWasteNextGreenCollectionSensor(
                 coordinator=coordinator,
                 entry=entry,
-                description=NEXT_GREEN_COLLECTION_DESCRIPTION,
-            )
+                description=(
+                    NEXT_GREEN_COLLECTION_DESCRIPTION
+                ),
+            ),
+            TorshavnWasteNextGeneralWasteCollectionSensor(
+                coordinator=coordinator,
+                entry=entry,
+                description=(
+                    NEXT_GENERAL_WASTE_COLLECTION_DESCRIPTION
+                ),
+            ),
         ]
     )
 
 
-class TorshavnWasteNextGreenCollectionSensor(
+class TorshavnWasteSensorEntity(
     CoordinatorEntity[TorshavnWasteCoordinator],
     SensorEntity,
 ):
-    """Sensor showing the next green-bin collection."""
+    """Base class for Tórshavn Waste sensors."""
 
     _attr_has_entity_name = True
 
@@ -69,7 +87,7 @@ class TorshavnWasteNextGreenCollectionSensor(
         entry: TorshavnWasteConfigEntry,
         description: SensorEntityDescription,
     ) -> None:
-        """Initialize the next green-bin collection sensor."""
+        """Initialize a Tórshavn Waste sensor."""
 
         super().__init__(coordinator)
 
@@ -88,9 +106,15 @@ class TorshavnWasteNextGreenCollectionSensor(
             },
             name=entry.title,
             manufacturer="Kommunala Brennistøðin",
-            model="Grøni kalendarin",
+            model="Ruskinnsavning",
             configuration_url="https://www.kob.fo/",
         )
+
+
+class TorshavnWasteNextGreenCollectionSensor(
+    TorshavnWasteSensorEntity
+):
+    """Sensor showing the next green-bin collection."""
 
     @property
     def native_value(self) -> date | None:
@@ -109,7 +133,7 @@ class TorshavnWasteNextGreenCollectionSensor(
     def extra_state_attributes(
         self,
     ) -> dict[str, Any]:
-        """Return additional collection information."""
+        """Return additional green-bin information."""
 
         data: TorshavnWasteData = self.coordinator.data
         next_collection = data.next_green_collection
@@ -138,5 +162,90 @@ class TorshavnWasteNextGreenCollectionSensor(
             )
         else:
             attributes["days_until"] = None
+
+        return attributes
+
+
+class TorshavnWasteNextGeneralWasteCollectionSensor(
+    TorshavnWasteSensorEntity
+):
+    """Sensor showing the next general-waste collection."""
+
+    @property
+    def available(self) -> bool:
+        """Return whether general-waste data is available."""
+
+        data = self.coordinator.data
+
+        return (
+            super().available
+            and data.general_waste_area is not None
+            and data.next_general_waste_collection is not None
+        )
+
+    @property
+    def native_value(self) -> date | None:
+        """Return the next general-waste collection date."""
+
+        next_collection = (
+            self.coordinator.data
+            .next_general_waste_collection
+        )
+
+        if next_collection is None:
+            return None
+
+        return next_collection.collection_date
+
+    @property
+    def extra_state_attributes(
+        self,
+    ) -> dict[str, Any]:
+        """Return additional general-waste information."""
+
+        data: TorshavnWasteData = self.coordinator.data
+        area = data.general_waste_area
+        next_collection = (
+            data.next_general_waste_collection
+        )
+
+        attributes: dict[str, Any] = {
+            "street": data.street,
+            "settlement": data.settlement,
+            "error": data.general_waste_error,
+        }
+
+        if area is None:
+            attributes.update(
+                {
+                    "city": None,
+                    "zip_code": None,
+                    "route_id": None,
+                    "weekday": None,
+                    "weekday_name": None,
+                    "object_id": None,
+                    "global_id": None,
+                    "days_until": None,
+                }
+            )
+
+            return attributes
+
+        attributes.update(
+            {
+                "city": area.city,
+                "zip_code": area.zip_code,
+                "route_id": area.route_id,
+                "weekday": area.weekday,
+                "weekday_name": area.weekday_name,
+                "object_id": area.object_id,
+                "global_id": area.global_id,
+                "days_until": (
+                    next_collection.days_until
+                    if next_collection is not None
+                    else None
+                ),
+            }
+        )
 
         return attributes

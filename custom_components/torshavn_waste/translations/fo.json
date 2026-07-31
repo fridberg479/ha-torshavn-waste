@@ -54,6 +54,9 @@
     "sensor": {
       "next_green_collection": {
         "name": "Næsta tøming av grøna ílatinum"
+      },
+      "next_general_waste_collection": {
+        "name": "Næsta vanliga ruskinnsavning"
       }
     }
   }
