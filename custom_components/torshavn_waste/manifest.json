@@ -1,0 +1,10 @@
+{
+  "domain": "torshavn_waste",
+  "name": "Tórshavn Waste",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://github.com/fridberg479/ha-torshavn-waste",
+  "iot_class": "local_polling",
+  "requirements": [],
+  "version": "0.1.0"
+}

@@ -1,0 +1,60 @@
+{
+  "title": "Tórshavn Waste",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up waste collection",
+        "description": "Enter the street name without a house number. If the street is not listed, you will be asked for the town or village.",
+        "data": {
+          "street": "Street"
+        },
+        "data_description": {
+          "street": "Enter the street name without a house number."
+        }
+      },
+      "select_street": {
+        "title": "Select street",
+        "description": "No exact match was found. Select the correct street from the suggestions.",
+        "data": {
+          "street": "Street"
+        }
+      },
+      "settlement": {
+        "title": "Enter town or village",
+        "description": "The street {street} was not found in the printed street list. Enter the town or village for the address.",
+        "data": {
+          "settlement": "Town or village"
+        },
+        "data_description": {
+          "settlement": "Examples: Argir, Kirkjubøur or Kollafjørður."
+        }
+      },
+      "area": {
+        "title": "Select collection area",
+        "description": "{street} belongs to more than one collection area. Select the correct area for your address.",
+        "data": {
+          "area": "Area"
+        }
+      }
+    },
+    "error": {
+      "street_not_found": "Enter a valid street name.",
+      "settlement_not_found": "The town or village could not be found. Check the spelling and try again.",
+      "invalid_street_selection": "Select a valid street from the list.",
+      "invalid_area": "Select a valid collection area."
+    },
+    "abort": {
+      "already_configured": "This address and collection area are already configured.",
+      "calendar_data_error": "The green-calendar data could not be loaded.",
+      "no_street_suggestions": "No street suggestions are available.",
+      "missing_street": "The selected street is missing. Start the setup again."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "next_green_collection": {
+        "name": "Next green-bin collection"
+      }
+    }
+  }
+}

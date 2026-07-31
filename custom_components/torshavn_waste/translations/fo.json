@@ -1,0 +1,60 @@
+{
+  "title": "Ruskinnsavning í Tórshavnar kommunu",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set ruskinnsavning upp",
+        "description": "Skriva gøtunavnið uttan húsanummar. Verður gøtan ikki funnin í listanum, verður tú spurdur um bý ella bygd.",
+        "data": {
+          "street": "Gøta"
+        },
+        "data_description": {
+          "street": "Skriva gøtunavnið uttan húsanummar."
+        }
+      },
+      "select_street": {
+        "title": "Vel gøtu",
+        "description": "Eingin nágreinilig samsvaran varð funnin. Vel røttu gøtuna millum uppskotini.",
+        "data": {
+          "street": "Gøta"
+        }
+      },
+      "settlement": {
+        "title": "Skriva bý ella bygd",
+        "description": "Gøtan {street} varð ikki funnin í prentaða gøtulistanum. Skriva býin ella bygdina, har adressan er.",
+        "data": {
+          "settlement": "Býur ella bygd"
+        },
+        "data_description": {
+          "settlement": "Til dømis Argir, Kirkjubøur ella Kollafjørður."
+        }
+      },
+      "area": {
+        "title": "Vel innsavningarøki",
+        "description": "{street} hoyrir til fleiri enn eitt innsavningarøki. Vel rætta økið fyri tína adressu.",
+        "data": {
+          "area": "Øki"
+        }
+      }
+    },
+    "error": {
+      "street_not_found": "Skriva eitt gyldugt gøtunavn.",
+      "settlement_not_found": "Býurin ella bygdin varð ikki funnin. Kanna stavsetingina og royn aftur.",
+      "invalid_street_selection": "Vel eina gyldiga gøtu úr listanum.",
+      "invalid_area": "Vel eitt gyldugt innsavningarøki."
+    },
+    "abort": {
+      "already_configured": "Henda adressan og hetta innsavningarøkið eru longu sett upp.",
+      "calendar_data_error": "Dátan úr grøna kalendaranum kundi ikki lesast.",
+      "no_street_suggestions": "Eingi gøtuuppskot eru tøk.",
+      "missing_street": "Valda gøtan manglar. Byrja uppsetingina av nýggjum."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "next_green_collection": {
+        "name": "Næsta tøming av grøna ílatinum"
+      }
+    }
+  }
+}
