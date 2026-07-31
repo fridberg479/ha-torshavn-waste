@@ -58,6 +58,14 @@
       "next_general_waste_collection": {
         "name": "Næsta vanliga ruskinnsavning"
       }
+    },
+    "binary_sensor": {
+      "green_collection_tomorrow": {
+        "name": "Grøna ílatið verður tømt í morgin"
+      },
+      "general_waste_collection_tomorrow": {
+        "name": "Vanlig ruskinnsavning er í morgin"
+      }
     }
   }
 }

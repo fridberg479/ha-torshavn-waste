@@ -58,6 +58,14 @@
       "next_general_waste_collection": {
         "name": "Next general waste collection"
       }
+    },
+    "binary_sensor": {
+      "green_collection_tomorrow": {
+        "name": "Green-bin collection tomorrow"
+      },
+      "general_waste_collection_tomorrow": {
+        "name": "General waste collection tomorrow"
+      }
     }
   }
 }
