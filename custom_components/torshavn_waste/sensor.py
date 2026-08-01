@@ -27,6 +27,12 @@ from .coordinator import (
     TorshavnWasteCoordinator,
     TorshavnWasteData,
 )
+from .formatting import (
+    format_date_fo,
+    format_month_fo,
+    relative_days_fo,
+    weekday_name_fo,
+)
 
 PARALLEL_UPDATES = 0
 
@@ -171,12 +177,32 @@ class TorshavnWasteNextGreenCollectionSensor(
             ],
         }
 
-        if next_collection is not None:
-            attributes["days_until"] = (
-                next_collection.days_until
+        if next_collection is None:
+            attributes.update(
+                {
+                    "days_until": None,
+                    "formatted_date": None,
+                    "weekday_name_fo": None,
+                    "relative_text": None,
+                }
             )
-        else:
-            attributes["days_until"] = None
+
+            return attributes
+
+        attributes.update(
+            {
+                "days_until": next_collection.days_until,
+                "formatted_date": format_date_fo(
+                    next_collection.collection_date
+                ),
+                "weekday_name_fo": weekday_name_fo(
+                    next_collection.collection_date
+                ),
+                "relative_text": relative_days_fo(
+                    next_collection.days_until
+                ),
+            }
+        )
 
         return attributes
 
@@ -241,6 +267,9 @@ class TorshavnWasteNextGeneralWasteCollectionSensor(
                     "object_id": None,
                     "global_id": None,
                     "days_until": None,
+                    "formatted_date": None,
+                    "weekday_name_fo": None,
+                    "relative_text": None,
                     "is_holiday": None,
                     "holiday_name": None,
                     "schedule_may_be_changed": None,
@@ -260,6 +289,27 @@ class TorshavnWasteNextGeneralWasteCollectionSensor(
                 "global_id": area.global_id,
                 "days_until": (
                     next_collection.days_until
+                    if next_collection is not None
+                    else None
+                ),
+                "formatted_date": (
+                    format_date_fo(
+                        next_collection.collection_date
+                    )
+                    if next_collection is not None
+                    else None
+                ),
+                "weekday_name_fo": (
+                    weekday_name_fo(
+                        next_collection.collection_date
+                    )
+                    if next_collection is not None
+                    else None
+                ),
+                "relative_text": (
+                    relative_days_fo(
+                        next_collection.days_until
+                    )
                     if next_collection is not None
                     else None
                 ),
@@ -331,6 +381,7 @@ class TorshavnWasteNextBagDeliverySensor(
                     "delivery_month": None,
                     "months_until": None,
                     "bag_types": [],
+                    "formatted_month": None,
                 }
             )
 
@@ -342,6 +393,10 @@ class TorshavnWasteNextBagDeliverySensor(
                 "delivery_month": result.delivery_month,
                 "months_until": result.months_until,
                 "bag_types": list(result.bag_types),
+                "formatted_month": format_month_fo(
+                    result.delivery_year,
+                    result.delivery_month,
+                ),
             }
         )
 
