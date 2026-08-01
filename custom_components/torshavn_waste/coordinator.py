@@ -30,6 +30,7 @@ from .const import (
     CONF_STREET,
     DOMAIN,
 )
+from .holidays import get_holiday_name
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -42,6 +43,9 @@ class GeneralWasteCollectionResult:
 
     collection_date: date
     days_until: int
+    is_holiday: bool
+    holiday_name: str | None
+    schedule_may_be_changed: bool
 
 
 @dataclass(frozen=True, slots=True)
@@ -317,7 +321,16 @@ class TorshavnWasteCoordinator(
             + timedelta(days=days_until)
         )
 
+        holiday_name = get_holiday_name(
+            collection_date
+        )
+
+        is_holiday = holiday_name is not None
+
         return GeneralWasteCollectionResult(
             collection_date=collection_date,
             days_until=days_until,
+            is_holiday=is_holiday,
+            holiday_name=holiday_name,
+            schedule_may_be_changed=is_holiday,
         )

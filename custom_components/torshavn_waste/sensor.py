@@ -226,6 +226,9 @@ class TorshavnWasteNextGeneralWasteCollectionSensor(
                     "object_id": None,
                     "global_id": None,
                     "days_until": None,
+                    "is_holiday": None,
+                    "holiday_name": None,
+                    "schedule_may_be_changed": None,
                 }
             )
 
@@ -242,6 +245,21 @@ class TorshavnWasteNextGeneralWasteCollectionSensor(
                 "global_id": area.global_id,
                 "days_until": (
                     next_collection.days_until
+                    if next_collection is not None
+                    else None
+                ),
+                "is_holiday": (
+                    next_collection.is_holiday
+                    if next_collection is not None
+                    else None
+                ),
+                "holiday_name": (
+                    next_collection.holiday_name
+                    if next_collection is not None
+                    else None
+                ),
+                "schedule_may_be_changed": (
+                    next_collection.schedule_may_be_changed
                     if next_collection is not None
                     else None
                 ),

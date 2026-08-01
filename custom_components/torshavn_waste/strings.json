@@ -65,6 +65,9 @@
       },
       "general_waste_collection_tomorrow": {
         "name": "General waste collection tomorrow"
+      },
+      "general_waste_holiday_warning": {
+        "name": "General waste collection may be changed"
       }
     },
     "calendar": {

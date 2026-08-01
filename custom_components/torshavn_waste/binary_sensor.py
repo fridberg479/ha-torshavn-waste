@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 from homeassistant.components.binary_sensor import (
     BinarySensorEntity,
     BinarySensorEntityDescription,
@@ -36,6 +38,14 @@ GENERAL_WASTE_COLLECTION_TOMORROW_DESCRIPTION = (
     )
 )
 
+GENERAL_WASTE_HOLIDAY_WARNING_DESCRIPTION = (
+    BinarySensorEntityDescription(
+        key="general_waste_holiday_warning",
+        translation_key="general_waste_holiday_warning",
+        icon="mdi:calendar-alert",
+    )
+)
+
 
 async def async_setup_entry(
     hass: HomeAssistant,
@@ -60,6 +70,13 @@ async def async_setup_entry(
                 entry=entry,
                 description=(
                     GENERAL_WASTE_COLLECTION_TOMORROW_DESCRIPTION
+                ),
+            ),
+            TorshavnWasteGeneralWasteHolidayWarningBinarySensor(
+                coordinator=coordinator,
+                entry=entry,
+                description=(
+                    GENERAL_WASTE_HOLIDAY_WARNING_DESCRIPTION
                 ),
             ),
         ]
@@ -152,3 +169,58 @@ class TorshavnWasteGeneralWasteTomorrowBinarySensor(
             return None
 
         return next_collection.days_until == 1
+
+
+class TorshavnWasteGeneralWasteHolidayWarningBinarySensor(
+    TorshavnWasteBinarySensorEntity
+):
+    """Whether the next general-waste collection falls on a holiday."""
+
+    @property
+    def available(self) -> bool:
+        """Return whether general-waste data is available."""
+
+        return (
+            super().available
+            and self.coordinator.data
+            .next_general_waste_collection
+            is not None
+        )
+
+    @property
+    def is_on(self) -> bool | None:
+        """Return True when the next collection falls on a holiday."""
+
+        next_collection = (
+            self.coordinator.data
+            .next_general_waste_collection
+        )
+
+        if next_collection is None:
+            return None
+
+        return next_collection.schedule_may_be_changed
+
+    @property
+    def extra_state_attributes(
+        self,
+    ) -> dict[str, Any]:
+        """Return holiday warning details."""
+
+        next_collection = (
+            self.coordinator.data
+            .next_general_waste_collection
+        )
+
+        if next_collection is None:
+            return {
+                "collection_date": None,
+                "holiday_name": None,
+            }
+
+        return {
+            "collection_date": (
+                next_collection.collection_date.isoformat()
+            ),
+            "holiday_name": next_collection.holiday_name,
+        }

@@ -1,0 +1,229 @@
+ Volume in drive C has no label.
+ Volume Serial Number is 84A7-981B
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste
+
+31-07-2026  18:34    <DIR>          .
+31-07-2026  10:30    <DIR>          ..
+31-07-2026  10:30    <DIR>          .git
+31-07-2026  14:52                64 .gitignore
+31-07-2026  16:16    <DIR>          .pytest_cache
+31-07-2026  16:49    <DIR>          custom_components
+31-07-2026  15:21    <DIR>          data
+31-07-2026  18:34                 0 file.txt
+31-07-2026  16:01             6.657 green_calendar_debug.json
+31-07-2026  15:39           149.268 green_pdf_words.txt
+31-07-2026  15:58           135.668 green_street_words.txt
+31-07-2026  10:36                 0 pyproject.toml
+31-07-2026  10:36                 0 README.md
+31-07-2026  15:52    <DIR>          scripts
+31-07-2026  15:25    <DIR>          source
+31-07-2026  16:18    <DIR>          tests
+               7 File(s)        291.657 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\.git
+
+31-07-2026  10:30    <DIR>          .
+31-07-2026  18:34    <DIR>          ..
+31-07-2026  10:30               311 config
+31-07-2026  10:30                73 description
+31-07-2026  10:30                21 HEAD
+31-07-2026  10:30    <DIR>          hooks
+31-07-2026  10:30    <DIR>          info
+31-07-2026  10:30    <DIR>          objects
+31-07-2026  10:30    <DIR>          refs
+               3 File(s)            405 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\.git\hooks
+
+31-07-2026  10:30    <DIR>          .
+31-07-2026  10:30    <DIR>          ..
+31-07-2026  10:30               478 applypatch-msg.sample
+31-07-2026  10:30             1.972 commit-msg.sample
+31-07-2026  10:30             4.611 fsmonitor-watchman.sample
+31-07-2026  10:30               189 post-update.sample
+31-07-2026  10:30               424 pre-applypatch.sample
+31-07-2026  10:30             1.649 pre-commit.sample
+31-07-2026  10:30               416 pre-merge-commit.sample
+31-07-2026  10:30             1.374 pre-push.sample
+31-07-2026  10:30             4.898 pre-rebase.sample
+31-07-2026  10:30               544 pre-receive.sample
+31-07-2026  10:30             1.492 prepare-commit-msg.sample
+31-07-2026  10:30             2.783 push-to-checkout.sample
+31-07-2026  10:30             2.308 sendemail-validate.sample
+31-07-2026  10:30             3.650 update.sample
+              14 File(s)         26.788 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\.git\info
+
+31-07-2026  10:30    <DIR>          .
+31-07-2026  10:30    <DIR>          ..
+31-07-2026  10:30               240 exclude
+               1 File(s)            240 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\.git\objects
+
+31-07-2026  10:30    <DIR>          .
+31-07-2026  10:30    <DIR>          ..
+31-07-2026  10:30    <DIR>          info
+31-07-2026  10:30    <DIR>          pack
+               0 File(s)              0 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\.git\objects\info
+
+31-07-2026  10:30    <DIR>          .
+31-07-2026  10:30    <DIR>          ..
+               0 File(s)              0 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\.git\objects\pack
+
+31-07-2026  10:30    <DIR>          .
+31-07-2026  10:30    <DIR>          ..
+               0 File(s)              0 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\.git\refs
+
+31-07-2026  10:30    <DIR>          .
+31-07-2026  10:30    <DIR>          ..
+31-07-2026  10:30    <DIR>          heads
+31-07-2026  10:30    <DIR>          tags
+               0 File(s)              0 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\.git\refs\heads
+
+31-07-2026  10:30    <DIR>          .
+31-07-2026  10:30    <DIR>          ..
+               0 File(s)              0 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\.git\refs\tags
+
+31-07-2026  10:30    <DIR>          .
+31-07-2026  10:30    <DIR>          ..
+               0 File(s)              0 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\.pytest_cache
+
+31-07-2026  16:16    <DIR>          .
+31-07-2026  18:34    <DIR>          ..
+31-07-2026  16:16                37 .gitignore
+31-07-2026  16:16               191 CACHEDIR.TAG
+31-07-2026  16:16               302 README.md
+31-07-2026  16:16    <DIR>          v
+               3 File(s)            530 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\.pytest_cache\v
+
+31-07-2026  16:16    <DIR>          .
+31-07-2026  16:16    <DIR>          ..
+31-07-2026  16:16    <DIR>          cache
+               0 File(s)              0 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\.pytest_cache\v\cache
+
+31-07-2026  16:16    <DIR>          .
+31-07-2026  16:16    <DIR>          ..
+31-07-2026  16:41             1.238 lastfailed
+31-07-2026  16:46             2.149 nodeids
+               2 File(s)          3.387 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\custom_components
+
+31-07-2026  16:49    <DIR>          .
+31-07-2026  18:34    <DIR>          ..
+31-07-2026  16:49    <DIR>          data
+31-07-2026  16:31    <DIR>          torshavn_waste
+               0 File(s)              0 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\custom_components\data
+
+31-07-2026  16:49    <DIR>          .
+31-07-2026  16:49    <DIR>          ..
+               0 File(s)              0 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\custom_components\torshavn_waste
+
+31-07-2026  16:31    <DIR>          .
+31-07-2026  16:49    <DIR>          ..
+31-07-2026  16:24            15.466 api.py
+31-07-2026  10:36                 0 binary_sensor.py
+31-07-2026  10:36                 0 calendar.py
+31-07-2026  16:24             7.928 config_flow.py
+31-07-2026  16:24               163 const.py
+31-07-2026  16:38             3.719 coordinator.py
+31-07-2026  16:33    <DIR>          data
+31-07-2026  16:25               260 manifest.json
+31-07-2026  16:43             3.920 sensor.py
+31-07-2026  16:45             1.624 strings.json
+31-07-2026  16:28    <DIR>          translations
+31-07-2026  16:39             1.592 __init__.py
+31-07-2026  16:39    <DIR>          __pycache__
+              10 File(s)         34.672 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\custom_components\torshavn_waste\data
+
+31-07-2026  16:33    <DIR>          .
+31-07-2026  16:31    <DIR>          ..
+31-07-2026  16:01            13.302 green_calendar_2026.json
+               1 File(s)         13.302 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\custom_components\torshavn_waste\translations
+
+31-07-2026  16:28    <DIR>          .
+31-07-2026  16:31    <DIR>          ..
+31-07-2026  16:45             1.624 en.json
+31-07-2026  16:45             1.658 fo.json
+               2 File(s)          3.282 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\custom_components\torshavn_waste\__pycache__
+
+31-07-2026  16:39    <DIR>          .
+31-07-2026  16:31    <DIR>          ..
+31-07-2026  16:25            18.087 api.cpython-313.pyc
+31-07-2026  16:39             2.438 __init__.cpython-313.pyc
+               2 File(s)         20.525 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\data
+
+31-07-2026  15:21    <DIR>          .
+31-07-2026  18:34    <DIR>          ..
+31-07-2026  16:01            13.302 green_calendar_2026.json
+               1 File(s)         13.302 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\scripts
+
+31-07-2026  15:52    <DIR>          .
+31-07-2026  18:34    <DIR>          ..
+31-07-2026  16:01            19.842 build_green_calendar.py
+31-07-2026  15:38             5.876 inspect_arcgis.py
+31-07-2026  15:37             1.149 inspect_green_pdf.py
+31-07-2026  15:58             1.390 inspect_green_streets.py
+31-07-2026  16:10            12.961 validate_green_data.py
+               5 File(s)         41.218 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\source
+
+31-07-2026  15:25    <DIR>          .
+31-07-2026  18:34    <DIR>          ..
+31-07-2026  15:24         6.490.629 green_calendar_2026.pdf
+               1 File(s)      6.490.629 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\tests
+
+31-07-2026  16:18    <DIR>          .
+31-07-2026  18:34    <DIR>          ..
+31-07-2026  16:41             5.903 test_api.py
+31-07-2026  10:36                 0 __init__.py
+31-07-2026  16:41    <DIR>          __pycache__
+               2 File(s)          5.903 bytes
+
+ Directory of C:\Users\b1304\OneDrive\Documents\Github\homeassistant-torshavn-waste\ha-torshavn-waste\tests\__pycache__
+
+31-07-2026  16:41    <DIR>          .
+31-07-2026  16:18    <DIR>          ..
+31-07-2026  16:41            31.867 test_api.cpython-313-pytest-9.1.1.pyc
+31-07-2026  16:16               202 __init__.cpython-313.pyc
+               2 File(s)         32.069 bytes
+
+     Total Files Listed:
+              56 File(s)      6.977.909 bytes
+              71 Dir(s)  49.520.877.568 bytes free

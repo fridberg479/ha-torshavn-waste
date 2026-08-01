@@ -65,6 +65,9 @@
       },
       "general_waste_collection_tomorrow": {
         "name": "Vanlig ruskinnsavning er í morgin"
+      },
+      "general_waste_holiday_warning": {
+        "name": "Vanliga ruskinnsavningin kann vera broytt"
       }
     },
     "calendar": {

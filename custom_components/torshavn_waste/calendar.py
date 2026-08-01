@@ -18,6 +18,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from . import TorshavnWasteConfigEntry
 from .const import DOMAIN
 from .coordinator import TorshavnWasteCoordinator
+from .holidays import get_holiday_name
 
 PARALLEL_UPDATES = 0
 
@@ -215,14 +216,26 @@ class TorshavnWasteCalendar(
         """Create one regular general-waste event."""
 
         area = self.coordinator.data.general_waste_area
+        holiday_name = get_holiday_name(
+            collection_date
+        )
 
         details: list[str] = [
             "Regular general-waste collection.",
-            (
+        ]
+
+        if holiday_name is not None:
+            details.append(
+                f"This date is listed as {holiday_name}."
+            )
+            details.append(
+                "The collection schedule may be changed."
+            )
+        else:
+            details.append(
                 "Holiday-related schedule changes "
                 "are not included."
-            ),
-        ]
+            )
 
         if area is not None:
             if area.weekday_name:
@@ -235,8 +248,16 @@ class TorshavnWasteCalendar(
                     f"Route: {area.route_id}."
                 )
 
+        summary = "General waste collection"
+
+        if holiday_name is not None:
+            summary = (
+                "General waste collection "
+                "— possible schedule change"
+            )
+
         return CalendarEvent(
-            summary="General waste collection",
+            summary=summary,
             start=collection_date,
             end=collection_date + timedelta(days=1),
             description=" ".join(details),
