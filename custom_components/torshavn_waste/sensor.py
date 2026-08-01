@@ -43,6 +43,12 @@ NEXT_GENERAL_WASTE_COLLECTION_DESCRIPTION = (
     )
 )
 
+NEXT_BAG_DELIVERY_DESCRIPTION = SensorEntityDescription(
+    key="next_bag_delivery",
+    translation_key="next_bag_delivery",
+    icon="mdi:bag-personal",
+)
+
 
 async def async_setup_entry(
     hass: HomeAssistant,
@@ -68,6 +74,11 @@ async def async_setup_entry(
                 description=(
                     NEXT_GENERAL_WASTE_COLLECTION_DESCRIPTION
                 ),
+            ),
+            TorshavnWasteNextBagDeliverySensor(
+                coordinator=coordinator,
+                entry=entry,
+                description=NEXT_BAG_DELIVERY_DESCRIPTION,
             ),
         ]
     )
@@ -267,3 +278,117 @@ class TorshavnWasteNextGeneralWasteCollectionSensor(
         )
 
         return attributes
+
+
+class TorshavnWasteNextBagDeliverySensor(
+    TorshavnWasteSensorEntity
+):
+    """Sensor showing the next bag-delivery month."""
+
+    @property
+    def native_value(self) -> str | None:
+        """Return the next bag-delivery month as YYYY-MM."""
+
+        result = self._next_delivery()
+
+        if result is None:
+            return None
+
+        year, month, _, _ = result
+
+        return f"{year:04d}-{month:02d}"
+
+    @property
+    def extra_state_attributes(
+        self,
+    ) -> dict[str, Any]:
+        """Return details about the next bag delivery."""
+
+        data: TorshavnWasteData = self.coordinator.data
+        result = self._next_delivery()
+
+        attributes: dict[str, Any] = {
+            "street": data.street,
+            "settlement": data.settlement,
+            "calendar_year": data.calendar_year,
+            "red_bag_months": list(
+                data.red_bag_months
+            ),
+            "grey_bag_months": list(
+                data.grey_bag_months
+            ),
+        }
+
+        if result is None:
+            attributes.update(
+                {
+                    "delivery_year": None,
+                    "delivery_month": None,
+                    "months_until": None,
+                    "bag_types": [],
+                }
+            )
+
+            return attributes
+
+        year, month, months_until, bag_types = result
+
+        attributes.update(
+            {
+                "delivery_year": year,
+                "delivery_month": month,
+                "months_until": months_until,
+                "bag_types": list(bag_types),
+            }
+        )
+
+        return attributes
+
+    def _next_delivery(
+        self,
+    ) -> tuple[int, int, int, tuple[str, ...]] | None:
+        """Calculate the next bag-delivery month."""
+
+        data: TorshavnWasteData = self.coordinator.data
+        today = date.today()
+
+        if today.year > data.calendar_year:
+            return None
+
+        reference_month = (
+            today.month
+            if today.year == data.calendar_year
+            else 1
+        )
+
+        all_months = sorted(
+            set(data.red_bag_months)
+            | set(data.grey_bag_months)
+        )
+
+        for month in all_months:
+            if month < reference_month:
+                continue
+
+            bag_types: list[str] = []
+
+            if month in data.red_bag_months:
+                bag_types.append("red")
+
+            if month in data.grey_bag_months:
+                bag_types.append("grey")
+
+            months_until = (
+                (data.calendar_year - today.year) * 12
+                + month
+                - today.month
+            )
+
+            return (
+                data.calendar_year,
+                month,
+                months_until,
+                tuple(bag_types),
+            )
+
+        return None

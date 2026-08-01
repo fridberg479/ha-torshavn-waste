@@ -57,6 +57,9 @@
       },
       "next_general_waste_collection": {
         "name": "Næsta vanliga ruskinnsavning"
+      },
+      "next_bag_delivery": {
+        "name": "Næsta útbering av reyðum og gráum posum"
       }
     },
     "binary_sensor": {

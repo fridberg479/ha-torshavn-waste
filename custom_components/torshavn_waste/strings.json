@@ -57,6 +57,9 @@
       },
       "next_general_waste_collection": {
         "name": "Next general waste collection"
+      },
+      "next_bag_delivery": {
+        "name": "Next red and grey bag delivery"
       }
     },
     "binary_sensor": {
