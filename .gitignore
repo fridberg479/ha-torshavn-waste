@@ -4,3 +4,8 @@ __pycache__/
 .vscode/
 .pytest_cache/
 .DS_Store
+
+file.txt
+green_calendar_debug.json
+green_pdf_words.txt
+green_street_words.txt
