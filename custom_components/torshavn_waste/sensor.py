@@ -18,6 +18,10 @@ from homeassistant.helpers.entity_platform import (
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from . import TorshavnWasteConfigEntry
+from .bag_delivery import (
+    BagDeliveryResult,
+    next_bag_delivery,
+)
 from .const import DOMAIN
 from .coordinator import (
     TorshavnWasteCoordinator,
@@ -294,9 +298,10 @@ class TorshavnWasteNextBagDeliverySensor(
         if result is None:
             return None
 
-        year, month, _, _ = result
-
-        return f"{year:04d}-{month:02d}"
+        return (
+            f"{result.delivery_year:04d}-"
+            f"{result.delivery_month:02d}"
+        )
 
     @property
     def extra_state_attributes(
@@ -331,14 +336,12 @@ class TorshavnWasteNextBagDeliverySensor(
 
             return attributes
 
-        year, month, months_until, bag_types = result
-
         attributes.update(
             {
-                "delivery_year": year,
-                "delivery_month": month,
-                "months_until": months_until,
-                "bag_types": list(bag_types),
+                "delivery_year": result.delivery_year,
+                "delivery_month": result.delivery_month,
+                "months_until": result.months_until,
+                "bag_types": list(result.bag_types),
             }
         )
 
@@ -346,49 +349,14 @@ class TorshavnWasteNextBagDeliverySensor(
 
     def _next_delivery(
         self,
-    ) -> tuple[int, int, int, tuple[str, ...]] | None:
+    ) -> BagDeliveryResult | None:
         """Calculate the next bag-delivery month."""
 
         data: TorshavnWasteData = self.coordinator.data
-        today = date.today()
 
-        if today.year > data.calendar_year:
-            return None
-
-        reference_month = (
-            today.month
-            if today.year == data.calendar_year
-            else 1
+        return next_bag_delivery(
+            calendar_year=data.calendar_year,
+            red_bag_months=data.red_bag_months,
+            grey_bag_months=data.grey_bag_months,
+            from_date=date.today(),
         )
-
-        all_months = sorted(
-            set(data.red_bag_months)
-            | set(data.grey_bag_months)
-        )
-
-        for month in all_months:
-            if month < reference_month:
-                continue
-
-            bag_types: list[str] = []
-
-            if month in data.red_bag_months:
-                bag_types.append("red")
-
-            if month in data.grey_bag_months:
-                bag_types.append("grey")
-
-            months_until = (
-                (data.calendar_year - today.year) * 12
-                + month
-                - today.month
-            )
-
-            return (
-                data.calendar_year,
-                month,
-                months_until,
-                tuple(bag_types),
-            )
-
-        return None
